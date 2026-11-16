@@ -1,0 +1,47 @@
+<div class="page-shell">
+  <app-site-header />
+
+  <div class="page-layout">
+    <aside class="left-column" aria-label="Informations sur votre compte">
+      <app-user-profile />
+      <app-friends-list />
+    </aside>
+
+    <main class="main-content">
+      <app-site-navigation />
+      <section class="welcome-banner" aria-labelledby="welcome-title">
+        <div>
+          <p class="eyebrow">ÉDITION 2026–2027</p>
+          <h1 id="welcome-title">Les idées se rencontrent.</h1>
+          <p>Découvrez les conférences qui font avancer les idées.</p>
+        </div>
+        <a class="banner-link" href="#conferences">Explorer les conférences <span aria-hidden="true">→</span></a>
+      </section>
+
+      <section id="conferences" class="conference-section" aria-labelledby="conference-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">À NE PAS MANQUER</p>
+            <h2 id="conference-heading">Conférences à venir</h2>
+          </div>
+          <span class="section-note">Partagez, apprenez, échangez.</span>
+        </div>
+        <div class="conference-grid">
+          <app-conference-list
+            [conferences]="conferences()"
+            [selectedId]="selectedConference()?.id ?? null"
+            (conferenceSelected)="selectConference($event)"
+            (registrationRequested)="register($event)"
+          />
+          <app-conference-details [conference]="selectedConference()" />
+        </div>
+      </section>
+
+      <app-site-footer />
+    </main>
+
+    <aside class="right-column" aria-label="Activité récente">
+      <app-notifications-panel />
+    </aside>
+  </div>
+</div>
